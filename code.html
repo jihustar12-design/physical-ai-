@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ko"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><title>CityFlow AI</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500;600;700&amp;family=Space+Grotesk:wght@600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "secondary-fixed": "#dae1ff", "on-error": "#690005", "surface-container-low": "#171b26", "on-tertiary": "#00354a", "surface-container": "#1c1f2a", "tertiary": "#b8e3ff", "on-tertiary-fixed": "#001e2c", "surface": "#0f131d", "secondary-fixed-dim": "#b3c5ff", "on-primary-container": "#00566a", "on-secondary": "#002b75", "secondary-container": "#0266ff", "inverse-primary": "#00677f", "on-surface": "#dfe2f1", "outline": "#859399", "on-primary-fixed": "#001f28", "on-primary": "#003543", "inverse-surface": "#dfe2f1", "primary-fixed-dim": "#47d6ff", "surface-container-highest": "#313540", "tertiary-fixed": "#c4e7ff", "primary-fixed": "#b6ebff", "on-tertiary-container": "#005575", "primary-container": "#00d2ff", "on-secondary-fixed": "#001849", "error-container": "#93000a", "on-primary-fixed-variant": "#004e60", "tertiary-container": "#6bccff", "tertiary-fixed-dim": "#7bd0ff", "on-tertiary-fixed-variant": "#004c69", "outline-variant": "#3c494e", "on-secondary-fixed-variant": "#003fa4", "surface-tint": "#47d6ff", "surface-variant": "#313540", "error": "#ffb4ab", "on-surface-variant": "#bbc9cf", "surface-dim": "#0f131d", "on-error-container": "#ffdad6", "on-background": "#dfe2f1", "inverse-on-surface": "#2c303b", "on-secondary-container": "#f9f7ff", "surface-container-lowest": "#0a0e18", "surface-container-high": "#262a35", "secondary": "#b3c5ff", "background": "#0f131d", "primary": "#a5e7ff", "surface-bright": "#353944" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-md": "1rem", "space-lg": "1.5rem", "space-sm": "0.5rem", "margin": "1rem", "gutter-desktop": "1.5rem", "margin-desktop": "2rem", "space-xs": "0.25rem", "gutter": "1rem", "space-xl": "2.5rem" }, "fontFamily": { "body-sm": ["Inter"], "headline-sm": ["Space Grotesk"], "headline-lg-mobile": ["Space Grotesk"], "label-md": ["JetBrains Mono"], "label-sm": ["JetBrains Mono"], "body-lg": ["Inter"], "headline-lg": ["Space Grotesk"], "label-lg": ["JetBrains Mono"], "headline-md": ["Space Grotesk"], "display-lg-mobile": ["Space Grotesk"], "body-md": ["Inter"], "display-lg": ["Space Grotesk"] }, "fontSize": { "body-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "400" }], "headline-sm": ["18px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "600" }], "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "500" }], "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.06em", "fontWeight": "600" }], "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "400" }], "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500" }], "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }], "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.03em", "fontWeight": "700" }] } } } };</script><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-body-md text-on-surface flex flex-col min-h-screen antialiased selection:bg-primary-container selection:text-on-primary"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.35)]"><div class="h-16 px-margin flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm min-w-0"><img alt="CityFlow AI Brand Logo" class="h-8 w-auto object-contain shrink-0" src="https://lh3.googleusercontent.com/aida/AEtjO1WNgqDirqCAVDOU0DXj2hyum3qF4fccghknANJRk2hovE1yZ4CzFWKRrLOKCF-wMtpqszmJoev5-rA7asG56QfGs4u6A9JDRcXe8xJNsOY1Vj51Zt0WsLd28cQ_sbzAgiMO16bH8RKTkqemUQYL13kmCUJgScGMVjKexA4LvuJ9FH94EEwpbhzuOCDsSVZ7UIC1VGpuBCQ5pRuY9OSrU3vboS4TMRDk1GfF3pobq1NXEgm-PNAkhv264A-D"/><div class="flex flex-col min-w-0"><div class="flex items-center gap-space-xs"><span class="font-headline-sm text-headline-sm text-primary-fixed tracking-tight truncate">CityFlow AI</span><span class="font-label-sm text-label-sm text-on-surface-variant hidden sm:inline-block">Deployment Inquiry</span></div><div class="flex items-center gap-1.5"><span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-container opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-primary-container shadow-[0_0_8px_#00d2ff]"></span></span><span class="font-label-sm text-label-sm text-primary-container tracking-wider truncate">ONLINE: EDGE AI ACTIVE</span></div></div></div><div class="flex items-center gap-space-sm shrink-0"><a class="h-9 px-3 flex items-center gap-1 rounded-full bg-primary-container/10 text-primary-container font-label-md text-label-md font-semibold hover:bg-primary-container/20 transition-colors" href="#ai-models"><span class="material-symbols-outlined text-[16px]">neurology</span><span>AI 모델</span></a><button aria-label="시스템 알림" class="w-11 h-11 flex items-center justify-center rounded-xl bg-surface-container-high/80 text-primary hover:bg-surface-container-highest transition-colors"><span class="material-symbols-outlined text-[20px]">sensors</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0 shadow-[0_0_12px_rgba(165,231,255,0.4)]"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-24 bg-surface"><div class="flex flex-col w-full px-margin pb-space-lg gap-space-lg">
+<!-- Visual Ambience Canvas -->
+<div class="relative w-full rounded-xl bg-surface-container-high p-space-md shadow-md overflow-hidden">
+<div class="absolute -right-8 -top-8 w-44 h-44 rounded-full bg-primary-container/10 blur-2xl pointer-events-none"></div>
+<div class="absolute -left-12 -bottom-12 w-48 h-48 rounded-full bg-secondary-container/15 blur-3xl pointer-events-none"></div>
+<div class="relative z-10 flex flex-col gap-space-xs">
+<div class="inline-flex items-center gap-space-xs px-2.5 py-1 rounded-full bg-surface-container-highest w-fit">
+<span class="inline-block w-1.5 h-1.5 rounded-full bg-primary-container shadow-[0_0_8px_#00d2ff]"></span>
+<span class="font-label-sm text-label-sm text-primary tracking-widest uppercase">Deployment &amp; Consulting</span>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface tracking-tight mt-1">
+        스마트시티 자율 교차로<br/>
+<span class="text-primary-container">도입 문의 &amp; 실증 제안</span>
+</h1>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed mt-1">
+        지자체 스마트시티 사업단, 교통 공공기관, 스마트 인프라 건설사를 위한 맞춤형 PoC 및 기술 시연을 지원합니다.
+      </p>
+</div>
+<!-- Edge Telemetry Pill Bar -->
+<div class="relative z-10 grid grid-cols-3 gap-2 mt-4 pt-3 bg-surface-container-low/70 rounded-lg p-2.5">
+<div class="flex flex-col items-center justify-center text-center">
+<span class="font-label-sm text-label-sm text-outline">보안 등급</span>
+<span class="font-label-md text-label-md text-secondary-fixed font-semibold mt-0.5">ISMS-P 인증</span>
+</div>
+<div class="flex flex-col items-center justify-center text-center">
+<span class="font-label-sm text-label-sm text-outline">실증 지원</span>
+<span class="font-label-md text-label-md text-primary-fixed-dim font-semibold mt-0.5">V2X PoC 즉시</span>
+</div>
+<div class="flex flex-col items-center justify-center text-center">
+<span class="font-label-sm text-label-sm text-outline">응답 속도</span>
+<span class="font-label-md text-label-md text-primary-container font-semibold mt-0.5">24h 내 전담배치</span>
+</div>
+</div>
+</div>
+<!-- Interactive ROI Calculator Card -->
+<section class="flex flex-col rounded-xl bg-surface-container p-space-md shadow-md gap-space-md relative overflow-hidden">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-container text-[20px]">calculate</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">도입 규모별 기대 효과 시뮬레이션</h2>
+</div>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-primary-container/10 text-primary-container">AI MODEL v4.2</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant -mt-1">
+      관제 예정 교차로 수를 선택하시면 시티플로우 AI 엔진 기반 예측 절감 효과를 즉시 산출합니다.
+    </p>
+<!-- Node Selector Pills -->
+<div class="grid grid-cols-4 gap-1.5 p-1 rounded-lg bg-surface-container-low" id="nodeSelectorGroup">
+<button class="roi-btn active py-2 rounded font-label-md text-label-md font-semibold text-center transition-all bg-secondary-container text-on-secondary-container shadow-sm" data-val="5" type="button">
+        5개소
+      </button>
+<button class="roi-btn py-2 rounded font-label-md text-label-md font-medium text-center text-on-surface-variant hover:text-on-surface transition-all" data-val="10" type="button">
+        10개소
+      </button>
+<button class="roi-btn py-2 rounded font-label-md text-label-md font-medium text-center text-on-surface-variant hover:text-on-surface transition-all" data-val="30" type="button">
+        30개소
+      </button>
+<button class="roi-btn py-2 rounded font-label-md text-label-md font-medium text-center text-on-surface-variant hover:text-on-surface transition-all" data-val="50" type="button">
+        50개소+
+      </button>
+</div>
+<!-- Projected Metrics Output Cards -->
+<div class="grid grid-cols-1 gap-2.5">
+<!-- Metric 1: Wait Time -->
+<div class="flex items-center justify-between p-3 rounded-lg bg-surface-container-high">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-lg bg-surface-container-highest flex items-center justify-center text-primary-container shrink-0">
+<span class="material-symbols-outlined text-[20px]">timer</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">연간 통행 대기시간</span>
+<span class="font-body-sm text-body-sm text-on-surface font-medium">차량 흐름 최적화 지체 감축</span>
+</div>
+</div>
+<div class="text-right">
+<div class="font-headline-sm text-headline-sm text-primary-container font-bold tracking-tight" id="valHours">14,200<span class="font-label-md text-label-md text-on-surface-variant font-normal ml-0.5">시간</span></div>
+<span class="font-label-sm text-label-sm text-primary tracking-tight">▼ 28.4% 감축</span>
+</div>
+</div>
+<!-- Metric 2: Carbon Offsets -->
+<div class="flex items-center justify-between p-3 rounded-lg bg-surface-container-high">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-lg bg-surface-container-highest flex items-center justify-center text-tertiary-container shrink-0">
+<span class="material-symbols-outlined text-[20px]">eco</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">연간 탄소 배출 저감량</span>
+<span class="font-body-sm text-body-sm text-on-surface font-medium">공회전 및 정체 소모 억제</span>
+</div>
+</div>
+<div class="text-right">
+<div class="font-headline-sm text-headline-sm text-tertiary-container font-bold tracking-tight" id="valCarbon">420<span class="font-label-md text-label-md text-on-surface-variant font-normal ml-0.5">톤 CO₂</span></div>
+<span class="font-label-sm text-label-sm text-tertiary tracking-tight">수목 4.2만 그루 효과</span>
+</div>
+</div>
+<!-- Metric 3: Social Cost Savings -->
+<div class="flex items-center justify-between p-3 rounded-lg bg-surface-container-high">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-lg bg-surface-container-highest flex items-center justify-center text-primary-fixed-dim shrink-0">
+<span class="material-symbols-outlined text-[20px]">payments</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">사회적 혼잡 비용 절감</span>
+<span class="font-body-sm text-body-sm text-on-surface font-medium">유류비 및 시간 가치 환산</span>
+</div>
+</div>
+<div class="text-right">
+<div class="font-headline-sm text-headline-sm text-primary-fixed-dim font-bold tracking-tight" id="valCost">12.8<span class="font-label-md text-label-md text-on-surface-variant font-normal ml-0.5">억원</span></div>
+<span class="font-label-sm text-label-sm text-secondary-fixed tracking-tight">B/C 지수 2.18 산출</span>
+</div>
+</div>
+</div>
+<!-- Visual Spark Indicator Line -->
+<div class="p-2.5 rounded-lg bg-surface-container-lowest flex items-center justify-between text-on-surface-variant">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary-container text-[16px]">verified</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">국토교통부 스마트 ITS 가이드라인 표준 공식 적용</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary-container font-semibold">신뢰도 98.7%</span>
+</div>
+</section>
+<!-- Interactive PoC Request Form -->
+<section class="flex flex-col rounded-xl bg-surface-container p-space-md shadow-md gap-space-md">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">edit_document</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">도입 상담 및 PoC 신청</h2>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+        제안서를 접수해주시면 스마트시티 엔지니어가 24시간 내 유선 상담 및 현장 실사 일정을 안내해 드립니다.
+      </p>
+</div>
+<form class="flex flex-col gap-space-md" id="pocInquiryForm" onsubmit="event.preventDefault(); submitInquiry();">
+<!-- Organization / Institution Field -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface font-medium flex items-center justify-between" for="orgName">
+<span>기관 / 기업명 <span class="text-primary-container">*</span></span>
+<span class="font-label-sm text-label-sm text-outline">지자체, 공기업, 시공사 등</span>
+</label>
+<div class="relative">
+<input class="w-full h-11 px-3.5 rounded-lg bg-surface-container-high text-on-surface placeholder:text-outline focus:outline-none focus:bg-surface-container-highest transition-colors font-body-md text-body-md" id="orgName" name="orgName" placeholder="예: 서울특별시 스마트도시정책관 또는 현대건설 ITS팀" required="" type="text"/>
+</div>
+</div>
+<!-- Contact Person & Job Title -->
+<div class="grid grid-cols-2 gap-2">
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface font-medium" for="picName">
+            담당자 성명 <span class="text-primary-container">*</span>
+</label>
+<input class="w-full h-11 px-3.5 rounded-lg bg-surface-container-high text-on-surface placeholder:text-outline focus:outline-none focus:bg-surface-container-highest transition-colors font-body-md text-body-md" id="picName" name="picName" placeholder="홍길동" required="" type="text"/>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface font-medium" for="picRole">
+            직책 / 부서 <span class="text-primary-container">*</span>
+</label>
+<input class="w-full h-11 px-3.5 rounded-lg bg-surface-container-high text-on-surface placeholder:text-outline focus:outline-none focus:bg-surface-container-highest transition-colors font-body-md text-body-md" id="picRole" name="picRole" placeholder="팀장 / 스마트교통과" required="" type="text"/>
+</div>
+</div>
+<!-- Contact Info: Email & Phone -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface font-medium" for="picEmail">
+          공무 / 업무용 이메일 <span class="text-primary-container">*</span>
+</label>
+<input class="w-full h-11 px-3.5 rounded-lg bg-surface-container-high text-on-surface placeholder:text-outline focus:outline-none focus:bg-surface-container-highest transition-colors font-body-md text-body-md" id="picEmail" name="picEmail" placeholder="officer@city.go.kr" required="" type="email"/>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface font-medium" for="picPhone">
+          연락처 (직통 또는 휴대전화) <span class="text-primary-container">*</span>
+</label>
+<input class="w-full h-11 px-3.5 rounded-lg bg-surface-container-high text-on-surface placeholder:text-outline focus:outline-none focus:bg-surface-container-highest transition-colors font-body-md text-body-md" id="picPhone" name="picPhone" placeholder="010-1234-5678" required="" type="tel"/>
+</div>
+<!-- City / Region Target Selector -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface font-medium" for="regionSelect">
+          대상 도시 / 지자체 권역 <span class="text-primary-container">*</span>
+</label>
+<div class="relative">
+<select class="w-full h-11 px-3.5 rounded-lg bg-surface-container-high text-on-surface appearance-none focus:outline-none focus:bg-surface-container-highest transition-colors font-body-md text-body-md pr-10" id="regionSelect" name="regionSelect" required="">
+<option class="text-outline" disabled="" selected="" value="">사업 대상 권역을 선택해주세요</option>
+<option value="seoul">서울특별시 권역</option>
+<option value="gyeonggi">경기도 / 인천 신도시 권역</option>
+<option value="chungcheong">충청권 (세종 / 대전 포함)</option>
+<option value="yeongnam">영남권 (부산 / 대구 / 울산)</option>
+<option value="honam">호남권 (광주 / 전주 / 나주)</option>
+<option value="gangwon_jeju">강원 / 제주 특화구역</option>
+<option value="overseas">해외 스마트시티 ODA / 수출</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-2.5 text-on-surface-variant pointer-events-none text-[20px]">
+            expand_more
+          </span>
+</div>
+</div>
+<!-- Areas of Interest Checkboxes -->
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface font-medium">
+          도입 관심 분야 <span class="font-label-sm text-label-sm text-outline">(복수 선택 가능)</span>
+</label>
+<div class="grid grid-cols-1 gap-2">
+<label class="flex items-center gap-3 p-3 rounded-lg bg-surface-container-high hover:bg-surface-container-highest cursor-pointer transition-colors">
+<input checked="" class="w-4 h-4 rounded accent-primary-container" name="interest" type="checkbox" value="traffic-flow"/>
+<div class="flex flex-col min-w-0">
+<span class="font-body-md text-body-md text-on-surface font-medium">교차로 교통량 정밀 분석</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">LiDAR 및 비전 융합 대기행렬·통과속도 센싱</span>
+</div>
+</label>
+<label class="flex items-center gap-3 p-3 rounded-lg bg-surface-container-high hover:bg-surface-container-highest cursor-pointer transition-colors">
+<input checked="" class="w-4 h-4 rounded accent-primary-container" name="interest" type="checkbox" value="signal-opt"/>
+<div class="flex flex-col min-w-0">
+<span class="font-body-md text-body-md text-on-surface font-medium">실시간 신호 최적화 연동</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">경찰청 제어기 및 표준 프로토콜 기반 TOD 자동 보정</span>
+</div>
+</label>
+<label class="flex items-center gap-3 p-3 rounded-lg bg-surface-container-high hover:bg-surface-container-highest cursor-pointer transition-colors">
+<input class="w-4 h-4 rounded accent-primary-container" name="interest" type="checkbox" value="v2x-safety"/>
+<div class="flex flex-col min-w-0">
+<span class="font-body-md text-body-md text-on-surface font-medium">보행자 / 사고 예방 V2X 연동</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">우회전 사각지대 및 긴급차량 우선 신호 제어</span>
+</div>
+</label>
+<label class="flex items-center gap-3 p-3 rounded-lg bg-surface-container-high hover:bg-surface-container-highest cursor-pointer transition-colors">
+<input class="w-4 h-4 rounded accent-primary-container" name="interest" type="checkbox" value="hw-package"/>
+<div class="flex flex-col min-w-0">
+<span class="font-body-md text-body-md text-on-surface font-medium">하드웨어 및 엣지 AI 서버 공급</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">현장 함체형 IP67 등급 엣지 컴퓨팅 랙 패키징</span>
+</div>
+</label>
+</div>
+</div>
+<!-- Additional Requirements / Notes -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface font-medium flex items-center justify-between" for="reqNotes">
+<span>비고 및 요구사항</span>
+<span class="font-label-sm text-label-sm text-outline">선택입력</span>
+</label>
+<textarea class="w-full p-3 rounded-lg bg-surface-container-high text-on-surface placeholder:text-outline focus:outline-none focus:bg-surface-container-highest transition-colors font-body-md text-body-md resize-none" id="reqNotes" name="reqNotes" placeholder="현장 특이사항(예: 트램 병용 교차로, 비정형 로터리), 희망 실증 일정 또는 예산 편성 계획을 남겨주시면 더욱 상세한 맞춤형 제안이 준비됩니다." rows="3"></textarea>
+</div>
+<!-- Privacy & NDA Notice Box -->
+<div class="p-3 rounded-lg bg-surface-container-low flex items-start gap-2.5">
+<span class="material-symbols-outlined text-primary-container text-[18px] shrink-0 mt-0.5">verified_user</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">비밀유지 협약(NDA) 표준 프로세스</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+            제출된 프로젝트 정보는 공공 사업 보안 가이드에 따라 철저히 기밀로 보호되며, 비공개 현장 기술 시연 및 상세 원가 산출서가 제공됩니다.
+          </p>
+</div>
+</div>
+<!-- Main Action CTA Button -->
+<button class="w-full h-13 py-3 px-4 rounded-xl bg-primary-container text-on-primary font-headline-sm text-headline-sm font-semibold flex items-center justify-center gap-2 hover:bg-primary-fixed-dim transition-all active:scale-[0.99] shadow-[0_0_20px_rgba(0,210,255,0.35)]" id="submitBtn" type="submit">
+<span class="material-symbols-outlined text-[22px]">send</span>
+<span>도입 제안서 및 PoC 신청서 제출</span>
+</button>
+<!-- Post-submission Success Banner (Hidden by default) -->
+<div class="hidden p-4 rounded-xl bg-surface-container-highest shadow-md flex-col gap-2" id="successNotice">
+<div class="flex items-center gap-2 text-primary-container">
+<span class="material-symbols-outlined text-[24px]">task_alt</span>
+<span class="font-headline-sm text-headline-sm font-semibold">PoC 신청이 안전하게 접수되었습니다</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          접수 식별 코드: <span class="font-label-md text-label-md text-primary font-semibold">POC-2025-KR0914</span><br/>
+          담당 교통시스템 수석 엔지니어가 기재해주신 연락처로 24시간 내 배정 안내를 드립니다.
+        </p>
+</div>
+</form>
+</section>
+<!-- High-Tech Dedicated Hotline & Support Card -->
+<section class="rounded-xl bg-surface-container p-space-md shadow-md flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px]">headset_mic</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">스마트 모빌리티 기술팀 직통 지원</h3>
+</div>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-secondary-container/20 text-secondary-fixed">전담 데스크</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+      긴급 공공입찰 제안 지원, 테스트베드 설치 규격 문의, 현장 연동 가능 여부는 엔지니어링 핫라인으로 즉각 문의 가능합니다.
+    </p>
+<div class="grid grid-cols-1 gap-2 pt-1">
+<!-- Phone Contact Link -->
+<a class="flex items-center justify-between p-3 rounded-lg bg-surface-container-high hover:bg-surface-container-highest transition-colors" href="tel:025558290">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary-container/30 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[18px]">call</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">엔지니어링 핫라인</span>
+<span class="font-label-lg text-label-lg text-on-surface font-semibold">02-555-8290</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">arrow_forward</span>
+</a>
+<!-- Tech Email Link -->
+<a class="flex items-center justify-between p-3 rounded-lg bg-surface-container-high hover:bg-surface-container-highest transition-colors" href="mailto:tech@cityflow.ai">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-container/20 flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-[18px]">mail</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">기술 제휴 및 도면 수신 이메일</span>
+<span class="font-label-lg text-label-lg text-primary font-semibold">tech@cityflow.ai</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">arrow_forward</span>
+</a>
+</div>
+<!-- Onsite NDA Badge -->
+<div class="mt-1 flex items-center gap-2 p-2.5 rounded-lg bg-surface-container-lowest">
+<span class="material-symbols-outlined text-secondary-fixed text-[18px]">lock</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">
+        지자체·공공기관 보안 규정에 맞춘 <strong class="text-on-surface">보안 유지 서약(NDA) 기반 비공개 기술 시연</strong>이 가능합니다.
+      </span>
+</div>
+</section>
+<!-- Vision AI Model Comparison -->
+<section class="flex flex-col rounded-xl bg-surface-container p-space-md shadow-md gap-space-md scroll-mt-20" id="ai-models">
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-container text-[20px]">neurology</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">비전 AI 모델 비교</h2>
+</div>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-primary-container/10 text-primary-container">6 MODELS</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+        교차로 인지 파이프라인에 검토 중인 최신 비전 모델입니다. 탐지·분할·인식 역할별로 조합해 엣지와 서버에 배치합니다.
+      </p>
+</div>
+<!-- Model Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+<!-- YOLOE -->
+<div class="flex flex-col gap-2 p-3 rounded-lg bg-surface-container-high">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-lg bg-surface-container-highest flex items-center justify-center text-primary-container shrink-0">
+<span class="material-symbols-outlined text-[20px]">center_focus_strong</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface">YOLOE</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Tsinghua Univ.</span>
+</div>
+</div>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-primary-container/10 text-primary-container">실시간</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">텍스트·시각 프롬프트로 처음 보는 객체까지 탐지·분할하는 개방형 YOLO 모델.</p>
+<span class="font-label-sm text-label-sm text-primary">▸ 차량·보행자·이륜차 엣지 탐지</span>
+</div>
+<!-- DINO-X -->
+<div class="flex flex-col gap-2 p-3 rounded-lg bg-surface-container-high">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-lg bg-surface-container-highest flex items-center justify-center text-secondary shrink-0">
+<span class="material-symbols-outlined text-[20px]">travel_explore</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface">DINO-X</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">IDEA Research</span>
+</div>
+</div>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-secondary-container/20 text-secondary-fixed">준실시간</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">롱테일 객체까지 인식하는 오픈월드 탐지 모델. 프롬프트 없이 전체 객체 탐지도 지원.</p>
+<span class="font-label-sm text-label-sm text-primary">▸ 낙하물·공사장비 등 희소 객체 판별</span>
+</div>
+<!-- SAM 3 -->
+<div class="flex flex-col gap-2 p-3 rounded-lg bg-surface-container-high">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-lg bg-surface-container-highest flex items-center justify-center text-tertiary-container shrink-0">
+<span class="material-symbols-outlined text-[20px]">auto_awesome_mosaic</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface">SAM 3</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Meta AI</span>
+</div>
+</div>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-secondary-container/20 text-secondary-fixed">준실시간</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">개념(텍스트·예시 이미지) 단위로 이미지·영상 속 객체를 분할하고 추적.</p>
+<span class="font-label-sm text-label-sm text-primary">▸ 횡단보도·차로 영역 정밀 분할</span>
+</div>
+<!-- SigLIP 2 -->
+<div class="flex flex-col gap-2 p-3 rounded-lg bg-surface-container-high">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-lg bg-surface-container-highest flex items-center justify-center text-primary-fixed-dim shrink-0">
+<span class="material-symbols-outlined text-[20px]">image_search</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface">SigLIP 2</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Google DeepMind</span>
+</div>
+</div>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-primary-container/10 text-primary-container">실시간</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">다국어 이미지-텍스트 인코더. 제로샷 분류·검색과 VLM 비전 백본으로 활용.</p>
+<span class="font-label-sm text-label-sm text-primary">▸ 기상·노면 상태 제로샷 분류</span>
+</div>
+<!-- OCR -->
+<div class="flex flex-col gap-2 p-3 rounded-lg bg-surface-container-high">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-lg bg-surface-container-highest flex items-center justify-center text-secondary-fixed shrink-0">
+<span class="material-symbols-outlined text-[20px]">document_scanner</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface">OCR</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">PaddleOCR · Baidu</span>
+</div>
+</div>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-primary-container/10 text-primary-container">실시간</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">경량 검출·인식 모델로 영상 속 문자를 읽어내는 광학 문자 인식 엔진.</p>
+<span class="font-label-sm text-label-sm text-primary">▸ 번호판·도로 표지 문자 인식</span>
+</div>
+<!-- MediaPipe -->
+<div class="flex flex-col gap-2 p-3 rounded-lg bg-surface-container-high">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-lg bg-surface-container-highest flex items-center justify-center text-tertiary shrink-0">
+<span class="material-symbols-outlined text-[20px]">accessibility_new</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface">MediaPipe</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Google</span>
+</div>
+</div>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-primary-container/10 text-primary-container">실시간</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">포즈·손·얼굴 랜드마크 등 온디바이스 비전 태스크를 묶은 크로스플랫폼 프레임워크.</p>
+<span class="font-label-sm text-label-sm text-primary">▸ 보행자 자세·수신호 인식</span>
+</div>
+</div>
+<!-- Comparison Table -->
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-medium">모델 사양 비교표</span>
+<span class="font-label-sm text-label-sm text-outline sm:hidden">← 좌우 스크롤 →</span>
+</div>
+<div class="overflow-x-auto rounded-lg bg-surface-container-low">
+<table class="w-full min-w-[640px] text-left">
+<thead>
+<tr class="bg-surface-container-highest">
+<th class="sticky left-0 bg-surface-container-highest px-3 py-2.5 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest" scope="col">모델</th>
+<th class="px-3 py-2.5 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest" scope="col">개발사</th>
+<th class="px-3 py-2.5 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest" scope="col">주 기능</th>
+<th class="px-3 py-2.5 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest" scope="col">실시간성</th>
+<th class="px-3 py-2.5 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest" scope="col">배포 방식</th>
+<th class="px-3 py-2.5 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest" scope="col">라이선스</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm text-on-surface-variant">
+<tr class="border-t border-white/5 hover:bg-primary-container/5 transition-colors">
+<th class="sticky left-0 bg-surface-container-low px-3 py-2.5 font-label-md text-label-md text-on-surface font-semibold" scope="row">YOLOE</th>
+<td class="px-3 py-2.5">Tsinghua Univ.</td>
+<td class="px-3 py-2.5">개방형 어휘 탐지·분할</td>
+<td class="px-3 py-2.5"><span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-primary-container/10 text-primary-container whitespace-nowrap">실시간</span></td>
+<td class="px-3 py-2.5">오픈 가중치 · Ultralytics · ONNX/TensorRT 엣지</td>
+<td class="px-3 py-2.5 font-label-md text-label-md text-on-surface">AGPL-3.0</td>
+</tr>
+<tr class="border-t border-white/5 bg-white/[0.02] hover:bg-primary-container/5 transition-colors">
+<th class="sticky left-0 bg-surface-container-low px-3 py-2.5 font-label-md text-label-md text-on-surface font-semibold" scope="row">DINO-X</th>
+<td class="px-3 py-2.5">IDEA Research</td>
+<td class="px-3 py-2.5">오픈월드 객체 탐지·이해</td>
+<td class="px-3 py-2.5"><span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-secondary-container/20 text-secondary-fixed whitespace-nowrap">준실시간</span></td>
+<td class="px-3 py-2.5">클라우드 API (Edge 버전 별도)</td>
+<td class="px-3 py-2.5 font-label-md text-label-md text-on-surface">상용 API</td>
+</tr>
+<tr class="border-t border-white/5 hover:bg-primary-container/5 transition-colors">
+<th class="sticky left-0 bg-surface-container-low px-3 py-2.5 font-label-md text-label-md text-on-surface font-semibold" scope="row">SAM 3</th>
+<td class="px-3 py-2.5">Meta AI</td>
+<td class="px-3 py-2.5">개념 기반 분할·영상 추적</td>
+<td class="px-3 py-2.5"><span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-secondary-container/20 text-secondary-fixed whitespace-nowrap">준실시간</span></td>
+<td class="px-3 py-2.5">오픈 가중치 · GPU 서버</td>
+<td class="px-3 py-2.5 font-label-md text-label-md text-on-surface">SAM License</td>
+</tr>
+<tr class="border-t border-white/5 bg-white/[0.02] hover:bg-primary-container/5 transition-colors">
+<th class="sticky left-0 bg-surface-container-low px-3 py-2.5 font-label-md text-label-md text-on-surface font-semibold" scope="row">SigLIP 2</th>
+<td class="px-3 py-2.5">Google DeepMind</td>
+<td class="px-3 py-2.5">이미지-텍스트 임베딩·제로샷 분류</td>
+<td class="px-3 py-2.5"><span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-primary-container/10 text-primary-container whitespace-nowrap">실시간</span></td>
+<td class="px-3 py-2.5">오픈 가중치 · Hugging Face / JAX</td>
+<td class="px-3 py-2.5 font-label-md text-label-md text-on-surface">Apache-2.0</td>
+</tr>
+<tr class="border-t border-white/5 hover:bg-primary-container/5 transition-colors">
+<th class="sticky left-0 bg-surface-container-low px-3 py-2.5 font-label-md text-label-md text-on-surface font-semibold" scope="row">OCR</th>
+<td class="px-3 py-2.5">Baidu (PaddleOCR)</td>
+<td class="px-3 py-2.5">문자 검출·인식</td>
+<td class="px-3 py-2.5"><span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-primary-container/10 text-primary-container whitespace-nowrap">실시간</span></td>
+<td class="px-3 py-2.5">오픈소스 SDK · 서버/모바일 경량 모델</td>
+<td class="px-3 py-2.5 font-label-md text-label-md text-on-surface">Apache-2.0</td>
+</tr>
+<tr class="border-t border-white/5 bg-white/[0.02] hover:bg-primary-container/5 transition-colors">
+<th class="sticky left-0 bg-surface-container-low px-3 py-2.5 font-label-md text-label-md text-on-surface font-semibold" scope="row">MediaPipe</th>
+<td class="px-3 py-2.5">Google</td>
+<td class="px-3 py-2.5">포즈·손·얼굴 랜드마크</td>
+<td class="px-3 py-2.5"><span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-primary-container/10 text-primary-container whitespace-nowrap">실시간</span></td>
+<td class="px-3 py-2.5">온디바이스 SDK · Android/iOS/Web/Python</td>
+<td class="px-3 py-2.5 font-label-md text-label-md text-on-surface">Apache-2.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="p-2.5 rounded-lg bg-surface-container-lowest flex items-start gap-1.5">
+<span class="material-symbols-outlined text-primary-container text-[16px] shrink-0">info</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">실시간성은 일반적인 GPU/엣지 환경 기준의 상대 비교이며, 모델 크기와 하드웨어에 따라 달라집니다. 상용 도입 전 각 라이선스 조건을 확인하세요.</span>
+</div>
+</section>
+</div>
+<script>
+  // Simulation Metrics Matrix
+  const roiData = {
+    '5': { hours: '14,200', carbon: '420', cost: '12.8', rate: '▼ 28.4% 감축' },
+    '10': { hours: '31,500', carbon: '890', cost: '27.4', rate: '▼ 31.2% 감축' },
+    '30': { hours: '98,000', carbon: '2,750', cost: '86.5', rate: '▼ 34.8% 감축' },
+    '50': { hours: '172,000', carbon: '4,900', cost: '154.0', rate: '▼ 37.5% 감축' }
+  };
+
+  const buttons = document.querySelectorAll('#nodeSelectorGroup .roi-btn');
+  const valHours = document.getElementById('valHours');
+  const valCarbon = document.getElementById('valCarbon');
+  const valCost = document.getElementById('valCost');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Toggle active states
+      buttons.forEach(b => {
+        b.classList.remove('bg-secondary-container', 'text-on-secondary-container', 'font-semibold', 'shadow-sm');
+        b.classList.add('text-on-surface-variant');
+      });
+      btn.classList.add('bg-secondary-container', 'text-on-secondary-container', 'font-semibold', 'shadow-sm');
+      btn.classList.remove('text-on-surface-variant');
+
+      // Update calculated values
+      const val = btn.getAttribute('data-val');
+      const target = roiData[val] || roiData['5'];
+
+      if (valHours && valCarbon && valCost) {
+        valHours.innerHTML = target.hours + '<span class="font-label-md text-label-md text-on-surface-variant font-normal ml-0.5">시간</span>';
+        valCarbon.innerHTML = target.carbon + '<span class="font-label-md text-label-md text-on-surface-variant font-normal ml-0.5">톤 CO₂</span>';
+        valCost.innerHTML = target.cost + '<span class="font-label-md text-label-md text-on-surface-variant font-normal ml-0.5">억원</span>';
+      }
+    });
+  });
+
+  function submitInquiry() {
+    const submitBtn = document.getElementById('submitBtn');
+    const successNotice = document.getElementById('successNotice');
+    
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.classList.add('opacity-50', 'pointer-events-none');
+      submitBtn.innerHTML = '<span class="material-symbols-outlined animate-spin text-[20px]">sync</span><span>제출 암호화 전송 중...</span>';
+    }
+
+    setTimeout(() => {
+      if (submitBtn && successNotice) {
+        submitBtn.classList.add('hidden');
+        successNotice.classList.remove('hidden');
+        successNotice.classList.add('flex');
+        successNotice.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    }, 700);
+  }
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_-4px_24px_rgba(0,0,0,0.6)]" data-active-classes="text-primary-container font-semibold relative after:content-[''] after:absolute after:bottom-1.5 after:w-8 after:h-0.5 after:bg-primary-container after:shadow-[0_0_8px_#00d2ff]"><div class="flex items-center justify-around h-16 px-space-xs"><a class="flex flex-col items-center justify-center min-w-[64px] h-12 text-on-surface-variant hover:text-primary transition-colors" data-path="overview" href="#"><span class="material-symbols-outlined text-[22px]">info</span><span class="font-label-sm text-label-sm mt-0.5">소개</span></a><a class="flex flex-col items-center justify-center min-w-[64px] h-12 text-on-surface-variant hover:text-primary transition-colors" data-path="core-features" href="#"><span class="material-symbols-outlined text-[22px]">hub</span><span class="font-label-sm text-label-sm mt-0.5">핵심기능</span></a><a class="flex flex-col items-center justify-center min-w-[64px] h-12 text-on-surface-variant hover:text-primary transition-colors" data-path="hardware-specs" href="#"><span class="material-symbols-outlined text-[22px]">memory</span><span class="font-label-sm text-label-sm mt-0.5">하드웨어 스펙</span></a><a aria-current="page" class="flex flex-col items-center justify-center min-w-[64px] h-12 transition-colors text-primary-container font-semibold relative after:content-[''] after:absolute after:bottom-1.5 after:w-8 after:h-0.5 after:bg-primary-container after:shadow-[0_0_8px_#00d2ff]" data-path="deployment-inquiry" href="#"><span class="material-symbols-outlined text-[22px]">rocket_launch</span><span class="font-label-sm text-label-sm mt-0.5">도입문의</span></a></div></nav></body></html>
